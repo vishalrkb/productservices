@@ -1,4 +1,4 @@
-package dev.vishal.productservice.exceptions;
+package dev.vishal.productservice.exception;
 
 public class NotFoundException extends Exception{
 

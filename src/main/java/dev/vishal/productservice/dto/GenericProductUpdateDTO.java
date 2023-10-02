@@ -1,4 +1,4 @@
-package dev.vishal.productservice.dtos;
+package dev.vishal.productservice.dto;
 
 import lombok.Getter;
 import lombok.Setter;

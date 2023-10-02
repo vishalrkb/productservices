@@ -1,33 +1,20 @@
-package dev.vishal.productservice.services;
+package dev.vishal.productservice.service;
 
-import dev.vishal.productservice.dtos.FakeStoreProductDTO;
-import dev.vishal.productservice.dtos.GenericProductDTO;
+import dev.vishal.productservice.dto.FakeStoreProductDTO;
+import dev.vishal.productservice.dto.GenericProductDTO;
 
-import dev.vishal.productservice.dtos.GenericProductUpdateDTO;
-import dev.vishal.productservice.exceptions.NotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RequestCallback;
-import org.springframework.web.client.ResponseExtractor;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Service("fakeProductService")
-public class FakeStoreProxyProductService implements ProductService{
+public class FakeStoreProxyProductService{
 
-    private RestTemplateBuilder restTemplateBuilder;
+    private final RestTemplateBuilder restTemplateBuilder;
    // private  RestTemplate restTemplate;
-    private String specificProductRequestUrl = "https://fakestoreapi.com/products/{id}";
-    private String baseFakeStoreUrl = "https://fakestoreapi.com/products";
+    private final String specificProductRequestUrl = "https://fakestoreapi.com/products/{id}";
+    private final String baseFakeStoreUrl = "https://fakestoreapi.com/products";
 
     @Lazy
     public FakeStoreProxyProductService(RestTemplateBuilder restTemplateBuilder) {
@@ -40,11 +27,16 @@ public class FakeStoreProxyProductService implements ProductService{
         return new RestTemplateBuilder();
     }
 
-    private static GenericProductDTO convertFakeStoreDtoToGenericDto(FakeStoreProductDTO fakeStoreProductDTO) {
+    //private static GenericProductDTO convertFakeStoreDtoToGenericDto(FakeStoreProductDTO fakeStoreProductDTO) {
 
-            GenericProductDTO genericProductDTO = new GenericProductDTO(fakeStoreProductDTO.id(), fakeStoreProductDTO.title(), fakeStoreProductDTO.price(), fakeStoreProductDTO.category(), fakeStoreProductDTO.description(), fakeStoreProductDTO.image());
+            //GenericProductDTO genericProductDTO = new GenericProductDTO(fakeStoreProductDTO.id(), fakeStoreProductDTO.title(), fakeStoreProductDTO.price(), fakeStoreProductDTO.category(), fakeStoreProductDTO.description(), fakeStoreProductDTO.image());
 
-           return genericProductDTO;
+          // return genericProductDTO;
+   // }
+
+   /* @Override
+    public GenericProductDTO addProduct(AddProductRequest request) {
+        return null;
     }
 
     @Override
@@ -96,5 +88,5 @@ public class FakeStoreProxyProductService implements ProductService{
         HttpEntity<GenericProductUpdateDTO> requestUpdate = new HttpEntity<>(product);
         System.out.println(requestUpdate.toString());
         restTemplate.exchange(baseFakeStoreUrl+"/"+id, HttpMethod.PUT, requestUpdate, Void.class);
-    }
+    }*/
 }
